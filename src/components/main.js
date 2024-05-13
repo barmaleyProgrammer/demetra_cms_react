@@ -15,6 +15,8 @@ import News from "../pages/news/news";
 import Login from "../pages/login";
 import EditNew from "../pages/news/editNew";
 import CreateNew from "../pages/news/createNew";
+import PhotosHomePage from "../pages/photosHomePage/photosHomePage";
+import EditPhotoHomePage from "../pages/photosHomePage/editPhotoHomePage";
 
 
 const Main = () => {
@@ -27,6 +29,8 @@ const Main = () => {
                 <Route path="/news" element={<News />} />
                 <Route path="/editNew/:id?" element={<EditNew />} />
                 <Route path="/createNew" element={<CreateNew />} />
+                <Route path="/photosHomePage" element={<PhotosHomePage />} />
+                <Route path="/editPhotoHomePage/:id?" element={<EditPhotoHomePage />} />
                 {/*<Route path="/prices" element={<Prices />} />*/}
                 {/*<Route path="/rooms/:slug?" element={<Rooms />} />*/}
                 {/*<Route path="/photo_gallery/:slug?" element={<PhotoGallery />} />*/}

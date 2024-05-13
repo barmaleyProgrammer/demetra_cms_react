@@ -37,6 +37,11 @@ const Layout = () => {
                             <span className="ml-3 whitespace-nowrap">Про нас</span>
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink to="/photosHomePage" className="flex p-2 hover:bg-gray-200">
+                            <span className="ml-3 whitespace-nowrap">Фото (головна сторінка)</span>
+                            </NavLink>
+                        </li>
                     </ul>
                     <Footer />
                 </aside>

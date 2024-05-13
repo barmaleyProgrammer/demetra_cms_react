@@ -82,14 +82,14 @@ export const bannerRestore = (id) => {
 export const bannerCreate = (payload) => {
     return connect.post('/banners/', payload).then((res) => res.data);
 };
-export const bannerInfo = (id) => {
-    return connect.get(`/banners/${id}`).then((res) => res.data);
+export const photoInfo = (id) => {
+    return connect.get(`/homepagephotos/${id}`).then((res) => res.data);
 };
-export const bannerEdit = (payload) => {
-    return connect.put(`/banners/${payload.id}`, payload).then((res) => res.data);
+export const photoEdit = (payload) => {
+    return connect.put(`/photohomepage/${payload.id}`, payload).then((res) => res.data);
 };
-export const topBannerList = () => {
-    return connect.get('/topbanners?inActive=true').then((res) => res.data);
+export const photosList = () => {
+    return connect.get('/homepagephotos?inActive=true').then((res) => res.data);
 };
 
 export const topBannerCreate = (payload) => {
