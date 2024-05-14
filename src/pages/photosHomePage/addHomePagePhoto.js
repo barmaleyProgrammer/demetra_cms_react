@@ -1,19 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import { photoEdit, photoInfo } from "../../api";
-import {useNavigate, useParams} from "react-router-dom";
+import React, { useState } from 'react';
+import { addHomePagePhoto } from "../../api";
+import { useNavigate } from "react-router-dom";
 import InputField from "../../components/inputField";
 
 
-const EditPhotoHomePage = () => {
-    const { id } = useParams();
+const CreateHomePagePhoto = () => {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        photoInfo(id).then((result) => setForm(result));
-    }, []);
-
     const [form, setForm] = useState({
-        image: ''
+        image: '',
     });
 
     const handleInputChange = event => {
@@ -29,10 +24,9 @@ const EditPhotoHomePage = () => {
             reader.readAsDataURL(img);
         }
     };
-
     const Submit = (event) => {
         event.preventDefault();
-        photoEdit(form).then(() => {
+        addHomePagePhoto(form).then(() => {
             navigate('/photosHomePage');
         });
     };
@@ -42,11 +36,14 @@ const EditPhotoHomePage = () => {
             <div>
                 <div className="w-full p-6 space-y-8 rounded-lg">
                     <h1 className="text-2xl font-bold">
-                        Змінити фото
+                        Додати фото
                     </h1>
                     <form className="mt-8 space-y-6 from" action="#" autoComplete="off" onSubmit={Submit}>
                         <div className="mb-6 lg:max-w-xl">
-                            <img src={form.image} width="100" height="100" />
+                            {
+                                form.image ? <img src={form.image} width="200" height="200"/> : ""
+                            }
+
                             <InputField
                                 className="block w-full text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
                                 autoComplete="off"
@@ -63,7 +60,7 @@ const EditPhotoHomePage = () => {
                 </div>
             </div>
         </div>
-    );
+    )
 };
 
-export default EditPhotoHomePage;
+export default CreateHomePagePhoto;

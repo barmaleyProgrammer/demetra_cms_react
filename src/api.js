@@ -94,14 +94,14 @@ export const homePhotoDelete = (id) => {
     return connect.delete(`/homepagephotos/${id}`).then((res) => res.data);
 };
 export const photoEdit = (payload) => {
-    return connect.put(`/photohomepage/${payload.id}`, payload).then((res) => res.data);
+    return connect.put(`/homepagephotos/${payload.id}`, payload).then((res) => res.data);
 };
 export const photosList = () => {
     return connect.get('/homepagephotos?inActive=true').then((res) => res.data);
 };
 
-export const topBannerCreate = (payload) => {
-    return connect.post('/topbanners/', payload).then((res) => res.data);
+export const addHomePagePhoto = (payload) => {
+    return connect.post('/homepagephotos/', payload).then((res) => res.data);
 };
 
 export const topBannerInfo = (id) => {
