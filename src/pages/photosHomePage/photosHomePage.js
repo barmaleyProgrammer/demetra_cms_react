@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import Grid from "../../components/grid";
-import {photosList} from "../../api";
+import {photosList, setActivePhoto, homePhotoDelete} from "../../api";
 
 const PhotosHomePage = () => {
 
@@ -10,6 +10,12 @@ const PhotosHomePage = () => {
         photosList().then((result) => setPhotos(result));
     }, []);
 
+    const destroy = (id) => {
+        console.log(id)
+        homePhotoDelete(id).then(() => {
+            photosList().then((result) => setPhotos(result));
+        });
+    };
     const columns = [
         {
             name: 'id',
@@ -45,7 +51,7 @@ const PhotosHomePage = () => {
                             name={'actions'}
                             type="checkbox"
                             checked={row.is_active}
-                            // onChange={(event) => handleInputChange(event, row.id)}
+                            onChange={(event) => handleInputChange(event, row.id)}
                         />
                     </div>
                 );
@@ -70,7 +76,7 @@ const PhotosHomePage = () => {
                                 </svg>
                             </button>
                         </NavLink>
-                        <button className="inline-flex items-center px-3 py-2 text-sm text-white rounded-lg bg-red-600 hover:bg-red-800" title="видалити">
+                        <button className="inline-flex items-center px-3 py-2 text-sm text-white rounded-lg bg-red-600 hover:bg-red-800" title="видалити" onClick={() => destroy(row.id)}>
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd"/>
                             </svg>
@@ -81,6 +87,12 @@ const PhotosHomePage = () => {
         }
     ];
 
+    const handleInputChange = (event, id) => {
+        const is_active = event.target.checked;
+        setActivePhoto({id, is_active}).then(() => {
+            photosList().then((result) => setPhotos(result));
+        });
+    };
 
     return (
             <div>

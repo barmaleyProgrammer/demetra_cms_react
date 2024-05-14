@@ -85,6 +85,14 @@ export const bannerCreate = (payload) => {
 export const photoInfo = (id) => {
     return connect.get(`/homepagephotos/${id}`).then((res) => res.data);
 };
+
+export const setActivePhoto = ({ id, is_active }) => {
+    return connect.get(`homepagephotos/${id}/active/${is_active}`).then((res) => res.data);
+};
+
+export const homePhotoDelete = (id) => {
+    return connect.delete(`/homepagephotos/${id}`).then((res) => res.data);
+};
 export const photoEdit = (payload) => {
     return connect.put(`/photohomepage/${payload.id}`, payload).then((res) => res.data);
 };
@@ -108,9 +116,6 @@ export const topBannerRestore = (id) => {
     return connect.get(`/topbanners/${id}/restore`).then((res) => res.data);
 };
 
-export const topBannerDelete = (id) => {
-    return connect.delete(`/topbanners/${id}`).then((res) => res.data);
-};
 export const topBannerPosition = (payload) => {
     const url = (payload.action === 'up') ? `/topbanners/${payload.id}/position/up` : `/topbanners/${payload.id}/position/down`;
     return connect.get(url).then((res) => res.data);
