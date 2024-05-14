@@ -43,7 +43,6 @@ const CreateHomePagePhoto = () => {
                             {
                                 form.image ? <img className="mb-6" src={form.image} width="200" height="200"/> : ""
                             }
-
                             <InputField
                                 className="block w-full text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
                                 autoComplete="off"
