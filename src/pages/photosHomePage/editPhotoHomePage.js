@@ -44,14 +44,13 @@ const EditPhotoHomePage = () => {
                     <h1 className="text-2xl font-bold">
                         Змінити фото
                     </h1>
-                    <form className="mt-8 space-y-6 from" action="#" autoComplete="off" onSubmit={Submit}>
+                    <form className="mt-6 space-y-6 from" action="#" autoComplete="off" onSubmit={Submit}>
                         <div className="mb-6 lg:max-w-xl">
-                            <img src={form.image} width="100" height="100" />
+                            <img className="mb-6" src={form.image} width="200" height="200" />
                             <InputField
                                 className="block w-full text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
                                 autoComplete="off"
                                 type="file"
-                                label="додати фото"
                                 name={'image'}
                                 onChange={handleInputChange}
                             />

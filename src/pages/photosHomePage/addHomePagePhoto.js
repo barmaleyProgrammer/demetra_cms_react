@@ -41,14 +41,13 @@ const CreateHomePagePhoto = () => {
                     <form className="mt-8 space-y-6 from" action="#" autoComplete="off" onSubmit={Submit}>
                         <div className="mb-6 lg:max-w-xl">
                             {
-                                form.image ? <img src={form.image} width="200" height="200"/> : ""
+                                form.image ? <img className="mb-6" src={form.image} width="200" height="200"/> : ""
                             }
 
                             <InputField
                                 className="block w-full text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
                                 autoComplete="off"
                                 type="file"
-                                label="додати фото"
                                 name={'image'}
                                 onChange={handleInputChange}
                             />
