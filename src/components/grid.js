@@ -1,7 +1,7 @@
 const Grid = ({ columns, rows }) => {
     return (
         <table className="w-full text-center whitespace-nowrap border-collapse border border-slate-300">
-            <thead className="text-xs text-left uppercase bg-gray-300">
+            <thead className="text-xs uppercase bg-gray-300">
             <tr>
                 {
                     columns.map((item, key) => {
@@ -31,7 +31,7 @@ const Grid = ({ columns, rows }) => {
                                         }
                                         else {
                                             return (
-                                                <td className="border-t p-4" key={columnKey}>{row[column.name]}</td>
+                                                <td className="border-t p-4 text-wrap" key={columnKey}>{row[column.name]}</td>
                                             )
                                         }
                                     })

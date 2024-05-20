@@ -166,39 +166,45 @@ export const aboutInfo = () => {
     return connect.get('/about/1').then((res) => res.data);
 };
 
-export const faqList = () => {
-    return connect.get('/faq').then((res) => res.data);
+export const roomList = () => {
+    return connect.get('/room').then((res) => res.data);
 }
-export const faqCategoryCreate = (payload) => {
-    return connect.post('/faq/category', payload).then((res) => res.data);
+export const createRoom = (payload) => {
+    return connect.post('/room', payload).then((res) => res.data);
 }
-export const faqCreate = (payload) => {
-    return connect.post('/faq', payload).then((res) => res.data);
-}
-
-export const showCategory = (id) => {
-    return connect.get(`/faq/category/${id}`).then((res) => res.data);
+export const showRoom = (id) => {
+    return connect.get(`/room/${id}`).then((res) => res.data);
 };
+
+export const destroyRoom = (id) => {
+    return connect.delete(`/room/${id}`).then((res) => res.data);
+};
+
+export const getRoomPhoto = (room_id) => {
+    return connect.get(`/room/${room_id}/photo`).then((res) => res.data);
+}
+export const createRoomPhoto = (payload) => {
+    return connect.post(`/room/${payload.room_id}/photo`, payload).then((res) => res.data);
+}
+export const updateRoomPhoto = (payload) => {
+    return connect.put(`/room/${payload.room_id}/photo/${payload.id}`, payload).then((res) => res.data);
+};
+export const destroyRoomPhoto = (payload) => {
+    return connect.delete(`/room/${payload.room_id}/photo/${payload.id}`).then((res) => res.data);
+};
+
+
+
+
 
 export const showFaq = (id) => {
     return connect.get(`/faq/${id}`).then((res) => res.data);
 };
 
-export const updateCategory = (payload) => {
+export const updateRoomsPhoto = (payload) => {
     return connect.put(`/faq/category/${payload.id}`, payload).then((res) => res.data);
 };
 
-export const updateFaq = (payload) => {
-    return connect.put(`/faq/${payload.id}`, payload).then((res) => res.data);
-};
-
-export const destroyCategory = (id) => {
-    return connect.delete(`/faq/category/${id}`).then((res) => res.data);
-};
-
-export const destroyFaq = (id) => {
-    return connect.delete(`/faq/${id}`).then((res) => res.data);
-};
 
 export const contactInfo = () => {
     return connect.get('/contact').then((res) => res.data);

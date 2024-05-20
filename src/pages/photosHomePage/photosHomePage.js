@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom";
 import Grid from "../../components/grid";
 import {photosList, setActivePhoto, homePhotoDelete, homePhotoPagePosition} from "../../api";
 
+// drag-n-drop https://www.youtube.com/watch?v=FgvJH91a5K0
 const PhotosHomePage = () => {
 
     const [photos, setPhotos] = useState([]);

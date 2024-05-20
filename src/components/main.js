@@ -9,6 +9,10 @@ import CreateNew from "../pages/news/createNew";
 import PhotosHomePage from "../pages/photosHomePage/photosHomePage";
 import EditPhotoHomePage from "../pages/photosHomePage/editPhotoHomePage";
 import AddHomePagePhoto from "../pages/photosHomePage/addHomePagePhoto";
+import MainPhotoRooms from "../pages/rooms/main_rooms";
+import CreateRoom from "../pages/rooms/createRoom";
+import EditRoomPhoto from "../pages/rooms/editRoomPhoto";
+import CurrentRoom from "../pages/rooms/current_room";
 
 
 const Main = () => {
@@ -24,6 +28,10 @@ const Main = () => {
                 <Route path="/photosHomePage" element={<PhotosHomePage />} />
                 <Route path="/editPhotoHomePage/:id?" element={<EditPhotoHomePage />} />
                 <Route path="/addHomePagePhoto" element={<AddHomePagePhoto />} />
+                <Route path="/createRoom" element={<CreateRoom />} />
+                <Route path="/main_rooms/:id?" element={<MainPhotoRooms />} />
+                <Route path="/current_room/:id?" element={<CurrentRoom />} />
+                <Route path="/editRoomPhoto/:id?" element={<EditRoomPhoto />} />
                 {/*<Route path="/prices" element={<Prices />} />*/}
                 {/*<Route path="/rooms/:slug?" element={<Rooms />} />*/}
                 {/*<Route path="/photo_gallery/:slug?" element={<PhotoGallery />} />*/}
