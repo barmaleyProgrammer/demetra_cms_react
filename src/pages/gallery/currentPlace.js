@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react';
 import Modal from "../../components/modal/modal";
-import AddRoomPhoto from "./addRoomPhoto";
-import EditRoomPhoto from "./editRoomPhoto";
+import AddPlacePhoto from "./addPlacePhoto";
+import EditPlacePhoto from "./editPlacePhoto";
 import { useParams } from "react-router-dom";
-import {getRoomPhoto} from "../../api";
+import editPlacePhoto from "./editPlacePhoto";
+// import {getRoomPhoto} from "../../api";
 
-const Current_room = () => {
+const CurrentPlace = () => {
     const [openModal, setOpenModal] = useState(false);
     const [currentPhoto, setCurrentPhoto] = useState(false);
-    const [roomPhotos, setRoomPhoto] = useState([]);
+    const [roomPhotos, setPlacePhoto] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
         const room_id = Number(id);
-        getRoomPhoto(room_id).then((result) => {
-            console.log(result)
-            setRoomPhoto(result);
-        });
+        // getRoomPhoto(room_id).then((result) => {
+        //     console.log(result)
+        //     setRoomPhoto(result);
+        // });
     }, []);
 
 
@@ -30,7 +31,7 @@ const Current_room = () => {
                     Додати фото номера
                 </button>
             </div>
-            {/*<form className="mt-6 space-y-6" action="#" autoComplete="off" onSubmit={editRoomPhoto}>*/}
+            <form className="mt-6 space-y-6" action="#" autoComplete="off" onSubmit={editPlacePhoto}>
                 <div className="flex flex-wrap gap-10 w-full mx-auto justify-center bg-[#F0F5FA]">
                     {
                         roomPhotos.map((item, key) => {
@@ -42,11 +43,11 @@ const Current_room = () => {
                         })
                     }
                 </div>
-            {/*</form>*/}
+            </form>
             {
                 openModal && (
                     <Modal close={() => setOpenModal(false)}>
-                        <AddRoomPhoto id={id} close={() => { window.location.reload(); setOpenModal(false); }}/>
+                        <AddPlacePhoto id={id} close={() => { window.location.reload(); setOpenModal(false); }}/>
                     </Modal>
                 )
             }
@@ -54,7 +55,7 @@ const Current_room = () => {
                 currentPhoto && (
                     <Modal close={() => setCurrentPhoto(false)}>
                         <div className="p-10">
-                            <EditRoomPhoto currentPhoto={currentPhoto} close={() => { window.location.reload(); setCurrentPhoto(false); }}/>
+                            <EditPlacePhoto currentPhoto={currentPhoto} close={() => { window.location.reload(); setCurrentPhoto(false); }}/>
                         </div>
 
                     </Modal>
@@ -64,4 +65,4 @@ const Current_room = () => {
     );
 };
 
-export default Current_room;
+export default CurrentPlace;

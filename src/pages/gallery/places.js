@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
+import {NavLink} from "react-router-dom";
 import Grid from "../../components/grid";
-const Rooms = ({rooms, destroy}) => {
 
+const Places = ({places, destroy}) => {
     const columns = [
         {
             name: 'id',
@@ -14,7 +14,7 @@ const Rooms = ({rooms, destroy}) => {
             name: 'image',
             title: 'Зображення',
             render: (row) => {
-                return (<img className="h-20 w-20 mx-auto" src={row.image} alt="rooms" />);
+                return (<img className="h-20 w-20 mx-auto" src={row.main_photo?.image} alt="places" />);
             },
         },
         {
@@ -22,23 +22,12 @@ const Rooms = ({rooms, destroy}) => {
             title: 'Назва',
         },
         {
-            name: 'price',
-            title: 'ціна',
-        },
-        {
-            name: 'description',
-            title: 'Опис',
-            render: (row) => {
-                return (<p className="text-wrap" dangerouslySetInnerHTML={{__html: row.description}}></p>);
-            },
-        },
-        {
             name: 'actions',
             title: 'ДІЇ',
             render: (row) => {
                 return (
                     <div className="inline-flex space-x-1">
-                        <NavLink to={`/editRoom/${row.id}`}>
+                        <NavLink to={`/editPlace/${row.id}`}>
                             <button
                                 className="inline-flex items-center px-3 py-2 text-sm text-white rounded-lg bg-blue-300 hover:bg-blue-50"
                                 title="Поміняти дані кімнати">
@@ -51,7 +40,7 @@ const Rooms = ({rooms, destroy}) => {
                                 </svg>
                             </button>
                         </NavLink>
-                        <NavLink to={`/current_room/${row.id}`}>
+                        <NavLink to={`/currentPlace/${row.id}`}>
                             <button
                                 className="inline-flex items-center px-3 py-2 text-sm text-white rounded-lg bg-yellow-400 hover:bg-yellow-800"
                                 title="Поміняти фото">
@@ -79,15 +68,15 @@ const Rooms = ({rooms, destroy}) => {
     return (
         <div>
             <div className="flex justify-between">
-                <h2 className="pt-3 font-medium text-2xl mb-3">Головна номери</h2>
-                <NavLink to="/createRoom" type="button"
+                <h2 className="pt-3 font-medium text-2xl mb-3">Галерея</h2>
+                <NavLink to="/createPlace" type="button"
                          className="mt-4 mb-4 inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-400 hover:bg-yellow-800 focus:ring-4 focus:ring-blue-300 sm:w-auto">
-                    Додати кімнату
+                    Додати локацию
                 </NavLink>
             </div>
-            <Grid columns={columns} rows={rooms} />
+            <Grid columns={columns} rows={places} />
         </div>
     );
 };
 
-export default Rooms;
+export default Places;

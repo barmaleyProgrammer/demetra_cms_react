@@ -42,7 +42,7 @@ const MainRooms = () => {
         getData();
     }
 
-    // return room ? <CurrentRoom room={room} edit={edit} /> : <Rooms rooms={rooms} destroy={destroy} />;
-    return room ? <CurrentRoom mainPhoto={room} room={room.room_photos} edit={edit} /> : <Rooms rooms={rooms} destroy={destroy} />;
+    return <Rooms rooms={rooms} destroy={destroy} />;
+    // return room ? <CurrentRoom mainPhoto={room} room={room.room_photos} edit={edit} /> : <Rooms rooms={rooms} destroy={destroy} />;
 };
 export default MainRooms;

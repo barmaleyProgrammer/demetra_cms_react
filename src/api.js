@@ -179,6 +179,9 @@ export const showRoom = (id) => {
 export const destroyRoom = (id) => {
     return connect.delete(`/room/${id}`).then((res) => res.data);
 };
+export const updateRoom = (payload) => {
+    return connect.put(`/room/${payload.id}`, payload).then((res) => res.data);
+};
 
 export const getRoomPhoto = (room_id) => {
     return connect.get(`/room/${room_id}/photo`).then((res) => res.data);
@@ -193,7 +196,28 @@ export const destroyRoomPhoto = (payload) => {
     return connect.delete(`/room/${payload.room_id}/photo/${payload.id}`).then((res) => res.data);
 };
 
+export const placeList = () => {
+    return connect.get('/place').then((res) => res.data);
+}
 
+export const createPlace = (payload) => {
+    return connect.post('/place', payload).then((res) => res.data);
+}
+
+export const destroyPlace = (id) => {
+    return connect.delete(`/place/${id}`).then((res) => res.data);
+};
+
+export const updatePlace = (payload) => {
+    return connect.put(`/place/${payload.id}/is_main`, payload).then((res) => res.data);
+};
+
+
+
+
+export const getPlacePhoto = (gallery_place_id) => {
+    return connect.get(`/place/${gallery_place_id}/photo`).then((res) => res.data);
+}
 
 
 

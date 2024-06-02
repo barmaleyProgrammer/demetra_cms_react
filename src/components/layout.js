@@ -47,6 +47,11 @@ const Layout = () => {
                             <span className="ml-3 whitespace-nowrap">Фото (номери)</span>
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink to="/gallery" className="flex p-2 hover:bg-gray-200">
+                            <span className="ml-3 whitespace-nowrap">Галерея</span>
+                            </NavLink>
+                        </li>
                     </ul>
                     <Footer />
                 </aside>

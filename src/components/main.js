@@ -13,7 +13,11 @@ import MainPhotoRooms from "../pages/rooms/main_rooms";
 import CreateRoom from "../pages/rooms/createRoom";
 import EditRoomPhoto from "../pages/rooms/editRoomPhoto";
 import CurrentRoom from "../pages/rooms/current_room";
-
+import EditRoom from "../pages/rooms/editRoom";
+import Gallery from "../pages/gallery/gallery";
+import CreatePlace from "../pages/gallery/createPlace";
+import EditPlace from "../pages/gallery/editPlace";
+import CurrentPlace from "../pages/gallery/currentPlace";
 
 const Main = () => {
 
@@ -32,6 +36,11 @@ const Main = () => {
                 <Route path="/main_rooms/:id?" element={<MainPhotoRooms />} />
                 <Route path="/current_room/:id?" element={<CurrentRoom />} />
                 <Route path="/editRoomPhoto/:id?" element={<EditRoomPhoto />} />
+                <Route path="/editRoom/:id?" element={<EditRoom />} />
+                <Route path="/gallery/:id?" element={<Gallery />} />
+                <Route path="/createPlace" element={<CreatePlace />} />
+                <Route path="/editPlace/:id?" element={<EditPlace />} />
+                <Route path="/currentPlace/:id?" element={<CurrentPlace />} />
                 {/*<Route path="/prices" element={<Prices />} />*/}
                 {/*<Route path="/rooms/:slug?" element={<Rooms />} />*/}
                 {/*<Route path="/photo_gallery/:slug?" element={<PhotoGallery />} />*/}
