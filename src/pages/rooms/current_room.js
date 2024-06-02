@@ -14,10 +14,9 @@ const Current_room = () => {
     useEffect(() => {
         const room_id = Number(id);
         getRoomPhoto(room_id).then((result) => {
-            console.log(result)
             setRoomPhoto(result);
         });
-    }, []);
+    }, [currentPhoto, openModal]);
 
 
     return (
@@ -46,7 +45,7 @@ const Current_room = () => {
             {
                 openModal && (
                     <Modal close={() => setOpenModal(false)}>
-                        <AddRoomPhoto id={id} close={() => { window.location.reload(); setOpenModal(false); }}/>
+                        <AddRoomPhoto id={id} close={() => { setOpenModal(false); }}/>
                     </Modal>
                 )
             }
@@ -54,7 +53,7 @@ const Current_room = () => {
                 currentPhoto && (
                     <Modal close={() => setCurrentPhoto(false)}>
                         <div className="p-10">
-                            <EditRoomPhoto currentPhoto={currentPhoto} close={() => { window.location.reload(); setCurrentPhoto(false); }}/>
+                            <EditRoomPhoto currentPhoto={currentPhoto} close={() => { setCurrentPhoto(false); }}/>
                         </div>
 
                     </Modal>
