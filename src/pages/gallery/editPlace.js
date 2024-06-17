@@ -72,7 +72,7 @@ const EditPlace = () => {
                         <div className="mb-6 lg:max-w-xl">
                             <div className="flex space-x-10">
                                 <div>
-                                    <label>діюче фото</label>
+                                    <label>головне фото</label>
                                     <img className="mb-6" src={place.image} width="200" height="200"/>
                                 </div>
                                  { newPlace && <div>
@@ -93,8 +93,8 @@ const EditPlace = () => {
                         </div>
                         <div className="mb-6 lg:max-w-xl">
                             <InputField
-                                label={'Назва номера'}
-                                placeholder={'назва номера'}
+                                label={'Назва локації'}
+                                placeholder={'назва локації'}
                                 type={'text'}
                                 name={'name'}
                                 required={true}
