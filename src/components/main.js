@@ -41,11 +41,6 @@ const Main = () => {
                 <Route path="/createPlace" element={<CreatePlace />} />
                 <Route path="/editPlace/:id?" element={<EditPlace />} />
                 <Route path="/currentPlace/:id?" element={<CurrentPlace />} />
-                {/*<Route path="/prices" element={<Prices />} />*/}
-                {/*<Route path="/rooms/:slug?" element={<Rooms />} />*/}
-                {/*<Route path="/photo_gallery/:slug?" element={<PhotoGallery />} />*/}
-                {/*<Route path="/contacts" element={<Contacts />} />*/}
-                {/*<Route path="/territory/:id?" element={<Territory />} />*/}
             </Routes>
         </main>
     );
