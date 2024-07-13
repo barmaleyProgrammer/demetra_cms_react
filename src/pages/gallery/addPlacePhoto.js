@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams } from "react-router-dom";
 import InputField from "../../components/inputField";
-// import { createPlacePhoto } from "../../api";
+import { createPlacePhoto } from "../../api";
 
 
 const AddPlacePhoto = ({close}) => {
@@ -10,27 +10,37 @@ const AddPlacePhoto = ({close}) => {
     const [form, setForm] = useState(
         {
             image: '',
-            room_id: '',
+            id: '',
         }
     );
 
     const handleInputChange = (event) => {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setForm({
-                image: reader.result,
-                room_id: Number(id),
-            });
-        };
-        reader.readAsDataURL(file);
+        if (event.target.files && event.target.files[0]) {
+            let img = event.target.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setForm((prevProps) => ({
+                    ...prevProps,
+                    image: reader.result,
+                }));
+            console.log(form);
+            };
+            reader.readAsDataURL(img);
+        }
     };
 
     const addPlacePhoto = (event) => {
         event.preventDefault();
-        // createPlacePhoto(form).then(() => {
-        //     close();
-        // })
+        const payload = {
+            gallery_place_id: Number(id),
+            image: form.image,
+        }
+        createPlacePhoto(payload).then(() => {
+            close();
+        })
+            .catch(error => {
+                console.error('Error adding photo:', error);
+            });
     };
 
     return (

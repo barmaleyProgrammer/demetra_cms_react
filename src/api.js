@@ -67,21 +67,6 @@ export const userRestore = (id) => {
     return connect.get(`/users/${id}/restore`).then((res) => res.data);
 };
 
-export const bannerList = () => {
-    return connect.get('/banners?withDeleted=true').then((res) => res.data);
-};
-
-export const bannerDelete = (id) => {
-    return connect.delete(`/banners/${id}`).then((res) => res.data);
-};
-
-export const bannerRestore = (id) => {
-    return connect.get(`/banners/${id}/restore`).then((res) => res.data);
-};
-
-export const bannerCreate = (payload) => {
-    return connect.post('/banners/', payload).then((res) => res.data);
-};
 export const photoInfo = (id) => {
     return connect.get(`/homepagephotos/${id}`).then((res) => res.data);
 };
@@ -109,24 +94,6 @@ export const homePhotoPagePosition = (payload) => {
     return connect.get(url).then((res) => res.data);
 };
 
-export const topBannerInfo = (id) => {
-    return connect.get(`/topbanners/${id}`).then((res) => res.data);
-};
-
-export const topBannerEdit = (payload) => {
-    return connect.put(`/topbanners/${payload.id}`, payload).then((res) => res.data);
-};
-
-export const topBannerRestore = (id) => {
-    return connect.get(`/topbanners/${id}/restore`).then((res) => res.data);
-};
-
-
-
-export const setActiveTopBanners = ({ id, is_active }) => {
-    return connect.get(`/topbanners/${id}/active/${is_active}`).then((res) => res.data);
-};
-
 export const newsList = () => {
     return connect.get('/news?inActive=true').then((res) => res.data);
 };
@@ -148,22 +115,6 @@ export const newoneInfo = (id) => {
 
 export const newoneEdit = (payload) => {
     return connect.put(`/news/${payload.id}`, payload).then((res) => res.data);
-};
-
-export const agreementUpdate = (payload) => {
-    return connect.put('/agreement/1', payload).then((res) => res.data);
-};
-
-export const aboutUpdate = (payload) => {
-    return connect.put('/about/1', payload).then((res) => res.data);
-};
-
-export const agreementInfo = () => {
-    return connect.get('/agreement/1').then((res) => res.data);
-};
-
-export const aboutInfo = () => {
-    return connect.get('/about/1').then((res) => res.data);
 };
 
 export const roomList = () => {
@@ -209,75 +160,20 @@ export const destroyPlace = (id) => {
 };
 
 export const updatePlace = (payload) => {
-    return connect.put(`/place/${payload.id}/is_main`, payload).then((res) => res.data);
+    return connect.put(`/place/${payload.id}`, payload).then((res) => res.data);
 };
 
-
-
+export const createPlacePhoto = (payload) => {
+    return connect.post(`/place/${payload.gallery_place_id}/photo`, payload).then((res) => res.data);
+}
 
 export const getPlacePhoto = (gallery_place_id) => {
     return connect.get(`/place/${gallery_place_id}/photo`).then((res) => res.data);
 }
 
-
-
-export const showFaq = (id) => {
-    return connect.get(`/faq/${id}`).then((res) => res.data);
+export const updatePlacePhoto = (payload) => {
+    return connect.put(`/place/${payload.id}/photo/${payload.gallery_place_id}`, payload).then((res) => res.data);
 };
-
-export const updateRoomsPhoto = (payload) => {
-    return connect.put(`/faq/category/${payload.id}`, payload).then((res) => res.data);
-};
-
-
-export const contactInfo = () => {
-    return connect.get('/contact').then((res) => res.data);
-};
-
-export const contactUpdate = (payload) => {
-    return connect.put('/contact', payload).then((res) => res.data);
-};
-
-export const advantagesList = () => {
-    return connect.get('/advantages?inActive=true').then((res) => res.data);
-};
-
-export const setActiveAdvantage = ({ id, is_active }) => {
-    return connect.get(`/advantages/${id}/active/${is_active}`).then((res) => res.data);
-};
-
-export const advantageCreate = (payload) => {
-    return connect.post('/advantages/', payload).then((res) => res.data);
-};
-
-export const advantageEdit = (payload) => {
-    return connect.put(`/advantages/${payload.id}`, payload).then((res) => res.data);
-};
-
-export const advantageDelete = (id) => {
-    return connect.delete(`/advantages/${id}`).then((res) => res.data);
-};
-
-export const neuronInfo = () => {
-    return connect.get('/neuron/1').then((res) => res.data);
-};
-
-export const neuronUpdate = (payload) => {
-    return connect.put('/neuron/1', payload).then((res) => res.data);
-};
-
-export const indicatorsList = () => {
-    return connect.get('/indicator?inActive=true').then((res) => res.data);
-};
-
-export const indicatorEdit = (payload) => {
-    return connect.put(`/indicator/${payload.id}`, payload).then((res) => res.data);
-};
-
-export const indicatorInfo = (id) => {
-    return connect.get(`/indicator/${id}`).then((res) => res.data);
-};
-
-export const setActiveIndicator = ({ id, is_active }) => {
-    return connect.get(`/indicator/${id}/active/${is_active}`).then((res) => res.data);
+export const destroyPlacePhoto = (payload) => {
+    return connect.delete(`/place/${payload.gallery_place_id}/photo/${payload.id}`).then((res) => res.data);
 };

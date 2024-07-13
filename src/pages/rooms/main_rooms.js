@@ -1,48 +1,49 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { destroyRoom, roomList } from "../../api";
-import CurrentRoom from './current_room';
+import { destroyRoom, roomList} from "../../api";
 import Rooms from './rooms';
-import Current_room from "./current_room";
+import Loader from "../../components/Loader/loader";
 
 const MainRooms = () => {
-    const { id } = useParams();
     const [rooms, setRooms] = useState([]);
-    const [room, setRoom] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         getData();
     }, []);
 
-    useEffect(() => {
-        if (id) {
-            const room = rooms.find((item) => item.id == id);
-            setRoom(room);
-        } else {
-            setRoom(null);
-        }
-    }, [id]);
-
     const getData = () => {
+        setLoading(true);
         return roomList().then((result) => {
             setRooms(result);
+            setLoading(false);
         });
     }
 
-    const destroy = (id) => {
-        console.log('destroy', id);
-        destroyRoom(id).then(() => {
-            getData();
-        });
-        // getData();
+    const destroy = async (id) => {
+        const room = rooms.find((item) => item.id == id);
+        if (!room) {
+            console.error('Місце не знайдено');
+            return;
+        }
+
+    const confirmMessage = `Ви впевнені, що хочете видалити "${room.name}"?`;
+        if (!window.confirm(confirmMessage)) {
+            return;
+        }
+        try {
+            setLoading(true);
+            await destroyRoom(id);
+            await getData();
+        } catch (error) {
+            console.error('Місце для знищення помилок', error);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const edit = (payload) => {
-        console.log('edit', id);
-        getData();
-    }
+    return (
+        loading ? <Loader /> : <Rooms rooms={rooms} destroy={destroy} />
+    )
 
-    return <Rooms rooms={rooms} destroy={destroy} />;
-    // return room ? <CurrentRoom mainPhoto={room} room={room.room_photos} edit={edit} /> : <Rooms rooms={rooms} destroy={destroy} />;
 };
 export default MainRooms;

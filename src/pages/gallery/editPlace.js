@@ -11,20 +11,23 @@ const EditPlace = () => {
     const [newPlace, setNewPlace] = useState(false);
 
     const [form, setForm] = useState({
-        image: '',
+        id: '',
         name: '',
+        main_photo: {
+            id: '',
+            image: '',
+            is_main: true
+        },
+        image: '',
     });
 
     useEffect(() => {
         placeList().then((result) => {
             const place = result.find((item) => item.id == id);
-            console.log(place)
             setForm(place);
             setPlace(place.main_photo);
         });
     }, []);
-
-
 
     const handleInputChangeName = (event) => {
         const { name, value } = event.target;
@@ -33,6 +36,8 @@ const EditPlace = () => {
             [name]: value
         }));
     };
+
+
 
     const handleInputChange = (event) => {
         if (event.target.files && event.target.files[0]) {
@@ -51,9 +56,14 @@ const EditPlace = () => {
     const Submit = (event) => {
         event.preventDefault();
         console.log(form)
-        const payload ={
-            id: form.main_photo.id,
-            image: form.image
+        const payload = {
+            id: Number(id),
+            name: form.name,
+            photo: {
+                id: Number(form.main_photo.id),
+                image: form.image || form.main_photo.image,
+                is_main: form.main_photo.is_main
+            }
         }
         updatePlace(payload).then(() => {
             navigate('/gallery');
@@ -66,7 +76,7 @@ const EditPlace = () => {
             <div>
                 <div className="w-full p-6 space-y-8 rounded-lg">
                     <h1 className="text-2xl font-bold">
-                        Змінити дані локації {form.name}
+                        Змінити дані локації "{form.name}"
                     </h1>
                     <form className="mt-8 space-y-6 from" action="#" autoComplete="off" onSubmit={Submit}>
                         <div className="mb-6 lg:max-w-xl">
@@ -75,11 +85,11 @@ const EditPlace = () => {
                                     <label>головне фото</label>
                                     <img className="mb-6" src={place.image} width="200" height="200"/>
                                 </div>
-                                 { newPlace && <div>
-                                                <label>нове фото</label>
-                                                <img className="mb-6" src={form.image} width="200" height="200"/>
-                                             </div>
-                                 }
+                                {newPlace && <div>
+                                    <label>нове фото</label>
+                                    <img className="mb-6" src={form.image} width="200" height="200"/>
+                                </div>
+                                }
                             </div>
                             <input
                                 className="hidden"
@@ -108,6 +118,11 @@ const EditPlace = () => {
                         <input
                             className="w-full px-5 py-3 text-base font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:ring-blue-300 sm:w-auto"
                             name="submit" type="submit" value="Зберегти"/>
+                        <button
+                            className="ml-4 px-5 py-3 text-base font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 sm:w-auto"
+                            type="button" onClick={() => window.history.back()}>
+                            Назад у Галерею
+                        </button>
                     </form>
                 </div>
             </div>

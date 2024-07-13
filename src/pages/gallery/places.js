@@ -30,7 +30,7 @@ const Places = ({places, destroy}) => {
                         <NavLink to={`/editPlace/${row.id}`}>
                             <button
                                 className="inline-flex items-center px-3 py-2 text-sm text-white rounded-lg bg-blue-300 hover:bg-blue-50"
-                                title="Поміняти дані кімнати">
+                                title={`Поміняти дані для "${row.name}"`}>
                                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -43,7 +43,7 @@ const Places = ({places, destroy}) => {
                         <NavLink to={`/currentPlace/${row.id}`}>
                             <button
                                 className="inline-flex items-center px-3 py-2 text-sm text-white rounded-lg bg-yellow-400 hover:bg-yellow-800"
-                                title="Поміняти фото">
+                                title={`Поміняти/додати фото для "${row.name}"`}>
                                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -53,7 +53,7 @@ const Places = ({places, destroy}) => {
                                 </svg>
                             </button>
                         </NavLink>
-                        <button className="inline-flex items-center px-3 py-2 text-sm text-white rounded-lg bg-red-600 hover:bg-red-800" title="видалити" onClick={() => destroy(row.id)}>
+                        <button className="inline-flex items-center px-3 py-2 text-sm text-white rounded-lg bg-red-600 hover:bg-red-800" title={`Видалити "${row.name}"`} onClick={() => destroy(row.id)}>
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd"/>
                             </svg>

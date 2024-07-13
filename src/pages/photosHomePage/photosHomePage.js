@@ -1,24 +1,32 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import Grid from "../../components/grid";
-import {photosList, setActivePhoto, homePhotoDelete, homePhotoPagePosition} from "../../api";
+import {photosList, setActivePhoto, homePhotoDelete, homePhotoPagePosition, destroyPlace} from "../../api";
 
 // drag-n-drop https://www.youtube.com/watch?v=FgvJH91a5K0
 const PhotosHomePage = () => {
-
     const [photos, setPhotos] = useState([]);
+
     useEffect(() => {
         photosList().then((result) => setPhotos(result));
     }, []);
 
-    const destroy = (id) => {
-        homePhotoDelete(id).then(() => {
-            photosList().then((result) => setPhotos(result));
-        });
+    const destroy = async (id) => {
+        const confirmMessage = `Ви впевнені, що хочете видалити фото?`;
+        if (!window.confirm(confirmMessage)) {
+            return;
+        }
+        try {
+            homePhotoDelete(id).then(() => {
+                photosList().then((result) => setPhotos(result));
+            });
+        } catch (error) {
+            console.error('Місце для знищення помилок', error);
+        } finally {
+        }
     };
 
     const up = (id) => {
-        console.log(id)
         const payload = {
             id: id,
             action: 'up'
@@ -162,13 +170,13 @@ const PhotosHomePage = () => {
     };
 
     return (
-            <div>
-                <NavLink to="/addHomePagePhoto" type="button"
-                         className="mt-4 mb-4 inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-400 hover:bg-yellow-800 focus:ring-4 focus:ring-blue-300 sm:w-auto">
-                    Додати фото
-                </NavLink>
-                <Grid columns={columns} rows={photos}/>
-            </div>
+        <div>
+            <NavLink to="/addHomePagePhoto" type="button"
+                     className="mt-4 mb-4 inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-400 hover:bg-yellow-800 focus:ring-4 focus:ring-blue-300 sm:w-auto">
+                Додати фото
+            </NavLink>
+            <Grid columns={columns} rows={photos}/>
+        </div>
     );
 };
 

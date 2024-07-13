@@ -1,41 +1,49 @@
 import { useState } from "react";
-import { destroyRoomPhoto, updatePlacePhoto } from "../../api";
+import { destroyPlacePhoto, updatePlacePhoto } from "../../api";
+import {useParams} from "react-router-dom";
 
 const EditPlacePhoto = ({ currentPhoto, close }) => {
+    const { id } = useParams();
     const [form, setForm] = useState(
         {
             image: '',
-            room_id: '',
+            gallery_place_id: '',
             id: ''
         }
     );
 
     const editPlacePhoto = (event) => {
         event.preventDefault();
-        // updatePlacePhoto(form).then(() => {
-        //     close();
-        // });
+        const payload = {
+            id: Number(id),
+            gallery_place_id: form.gallery_place_id,
+            image: form.image,
+        }
+        console.log(payload);
+        updatePlacePhoto(payload).then(() => {
+            close();
+        });
     };
 
-    // const handleInputChange = ( event, room_id, id ) => {
-    //     const file = event.target.files[0];
-    //     const reader = new FileReader();
-    //     reader.onloadend = () => {
-    //         setForm({
-    //             image: reader.result,
-    //             room_id: room_id,
-    //             id: id
-    //         });
-    //     };
-    //     reader.readAsDataURL(file);
-    // };
+    const handleInputChange = ( event, gallery_place_id, id ) => {
+        console.log(id);
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setForm({
+                image: reader.result,
+                gallery_place_id: id,
+            });
+        };
+        reader.readAsDataURL(file);
+    };
 
     const destroy = () => {
         const payload = {
-            room_id: currentPhoto.room_id,
+            gallery_place_id: currentPhoto.gallery_place_id,
             id: currentPhoto.id
         }
-        destroyRoomPhoto(payload).then(() => {
+        destroyPlacePhoto(payload).then(() => {
             close();
         });
     };
@@ -63,14 +71,16 @@ const EditPlacePhoto = ({ currentPhoto, close }) => {
                         className="hidden"
                         type="file"
                         id="files"
-                        // onChange={(e) => handleInputChange(e, currentPhoto.room_id, currentPhoto.id)}
+                        onChange={(e) => handleInputChange(e, currentPhoto.room_id, currentPhoto.id)}
                     />
-                    <label htmlFor="files" className="border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-1 mr-2">Замінити
+                    <label htmlFor="files"
+                           className="border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-1 mr-2">Замінити
                         фото</label>
                     {
                         !form.image.length ?
-                            <button type="button" className="border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-1 mr-2"
-                               onClick={() => destroy()}>видалити</button>
+                            <button type="button"
+                                    className="border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-1 mr-2"
+                                    onClick={() => destroy()}>видалити</button>
                             : ''
                     }
                     {
@@ -82,6 +92,11 @@ const EditPlacePhoto = ({ currentPhoto, close }) => {
                             </button> : ''
                     }
                 </div>
+                <button
+                    className="ml-auto px-5 py-3 text-base font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 sm:w-auto"
+                    type="button" onClick={() => window.history.back()}>
+                    Назад у Галерею
+                </button>
 
             </form>
         </div>
