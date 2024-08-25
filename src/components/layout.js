@@ -5,6 +5,8 @@ import Footer from "./footer";
 
 const Layout = () => {
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+
 
     const LogOut = (event) => {
         event.preventDefault();
@@ -16,7 +18,7 @@ const Layout = () => {
         <div>
             <header className="border-b h-[7vh] min-h-[90px] flex justify-between items-center">
                 <div className="flex items-center p-4">
-                    <NavLink to="#" onClick={LogOut}>
+                    <NavLink to="#" >
                         <img className="h-16 w-16" src={logo} alt="Logo" />
                     </NavLink>
                     <div className="ml-3">DEMETRA_CMS</div>
@@ -31,8 +33,11 @@ const Layout = () => {
                 <aside className="col-span-3 border-r bg-gray-100 px-3">
                     <ul className="space-y-1 font-medium h-[96%]">
                         <li>
-                            <NavLink to="/" className="flex p-2 hover:bg-gray-200">
-                            <span className="ml-3 whitespace-nowrap">Користувачі</span>
+                            <NavLink
+                                to={token ? "/profile" : "/"}
+                                className="flex p-2 hover:bg-gray-200"
+                            >
+                                <span className="ml-3 whitespace-nowrap">Користувачі</span>
                             </NavLink>
                         </li>
                         <li>

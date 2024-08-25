@@ -72,7 +72,8 @@ const EditRoom = () => {
             <div>
                 <div className="w-full p-6 space-y-8 rounded-lg">
                     <h1 className="text-2xl font-bold">
-                        Змінити дані кімнати {room.name}
+                        <span
+                            className="font-normal">Змінити дані кімнати:</span> {room.name ? room.name.charAt(0).toUpperCase() + room.name.slice(1) : ''}
                     </h1>
                     <form className="mt-8 space-y-6 from" action="#" autoComplete="off" onSubmit={Submit}>
                         <div className="mb-6 lg:max-w-xl">
@@ -81,11 +82,11 @@ const EditRoom = () => {
                                     <label>діюче фото</label>
                                     <img className="mb-6" src={room.image} width="200" height="200"/>
                                 </div>
-                                 { newPhoto && <div>
-                                                <label>нове фото</label>
-                                                <img className="mb-6" src={form.image} width="200" height="200"/>
-                                             </div>
-                                 }
+                                {newPhoto && <div>
+                                    <label>нове фото</label>
+                                    <img className="mb-6" src={form.image} width="200" height="200"/>
+                                </div>
+                                }
                             </div>
                             <input
                                 className="hidden"
@@ -130,13 +131,18 @@ const EditRoom = () => {
                                 apiKey={tinymceConfig.apiKey}
                                 init={tinymceConfig.tinyMCEOptions}
                                 tagName={tinymceConfig.tagName}
-                                value={form.body}
+                                value={form.description}
                                 onEditorChange={onEditorChange}
                             />
                         </div>
                         <input
                             className="w-full px-5 py-3 text-base font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:ring-blue-300 sm:w-auto"
                             name="submit" type="submit" value="Зберегти"/>
+                        <button
+                            className="ml-4 px-5 py-3 text-base font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 sm:w-auto"
+                            type="button" onClick={() => window.history.back()}>
+                            Назад до номерів
+                        </button>
                     </form>
                 </div>
             </div>

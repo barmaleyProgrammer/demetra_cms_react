@@ -32,19 +32,19 @@ const Main = () => {
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/news" element={<PrivateRoute><News /></PrivateRoute>} />
                 <Route path="/editNew/:id?" element={<PrivateRoute><EditNew /></PrivateRoute>} />
-                <Route path="/createNew" element={<CreateNew />} />
+                <Route path="/createNew" element={<PrivateRoute><CreateNew /></PrivateRoute>} />
                 <Route path="/photosHomePage" element={<PrivateRoute><PhotosHomePage /></PrivateRoute>} />
-                <Route path="/editPhotoHomePage/:id?" element={<EditPhotoHomePage />} />
-                <Route path="/addHomePagePhoto" element={<AddHomePagePhoto />} />
-                <Route path="/createRoom" element={<CreateRoom />} />
-                <Route path="/main_rooms/:id?" element={<MainPhotoRooms />} />
-                <Route path="/current_room/:id?" element={<CurrentRoom />} />
-                <Route path="/editRoomPhoto/:id?" element={<EditRoomPhoto />} />
-                <Route path="/editRoom/:id?" element={<EditRoom />} />
+                <Route path="/editPhotoHomePage/:id?" element={<PrivateRoute><EditPhotoHomePage /></PrivateRoute>} />
+                <Route path="/addHomePagePhoto" element={<PrivateRoute><AddHomePagePhoto /></PrivateRoute>} />
+                <Route path="/createRoom" element={<PrivateRoute><CreateRoom /></PrivateRoute>} />
+                <Route path="/main_rooms/:id?" element={<PrivateRoute><MainPhotoRooms /></PrivateRoute>} />
+                <Route path="/current_room/:id?" element={<PrivateRoute><CurrentRoom /></PrivateRoute>} />
+                <Route path="/editRoomPhoto/:id?" element={<PrivateRoute><EditRoomPhoto /></PrivateRoute>} />
+                <Route path="/editRoom/:id?" element={<PrivateRoute><EditRoom /></PrivateRoute>} />
                 <Route path="/gallery/:id?" element={<PrivateRoute><Gallery /></PrivateRoute>} />
-                <Route path="/createPlace" element={<CreatePlace />} />
-                <Route path="/editPlace/:id?" element={<EditPlace />} />
-                <Route path="/currentPlace/:id?" element={<CurrentPlace />} />
+                <Route path="/createPlace" element={<PrivateRoute><CreatePlace /></PrivateRoute>} />
+                <Route path="/editPlace/:id?" element={<PrivateRoute><EditPlace /></PrivateRoute>} />
+                <Route path="/currentPlace/:id?" element={<PrivateRoute><CurrentPlace /></PrivateRoute>} />
             </Routes>
         </main>
     );
