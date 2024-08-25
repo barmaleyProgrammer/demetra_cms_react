@@ -10,8 +10,7 @@ const Layout = () => {
 
     const LogOut = (event) => {
         event.preventDefault();
-        console.log(event);
-        navigate('/logout');
+        navigate('/profile');
     };
 
     return (
