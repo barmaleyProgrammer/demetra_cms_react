@@ -8,13 +8,13 @@ function Profile() {
 
     const handleLogout = () => {
         // Удаляем токен из localStorage
-        localStorage.removeItem('token');
+        localStorage.removeItem('accessToken');
         // Перенаправляем пользователя на главную страницу или страницу логина
         navigate('/');
     };
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('accessToken');
         if (token) {
             axios.get('http://localhost:8000/api/auth/whoami', {
                 headers: { 'Authorization': `Bearer ${token}` }

@@ -5,7 +5,7 @@ import Footer from "./footer";
 
 const Layout = () => {
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
 
 
     const LogOut = (event) => {

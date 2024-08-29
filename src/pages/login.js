@@ -14,7 +14,7 @@ const Login = () => {
     const onSubmit = async data => {
         try {
             const response = await axios.post('http://localhost:8000/api/auth/login', data);
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('accessToken', response.data.accessToken);
             navigate(from); // Перенаправление на исходную страницу после успешного логина
         } catch (error) {
             if (error.response) {
