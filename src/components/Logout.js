@@ -7,8 +7,9 @@ function Logout() {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
+        const endPoint = (process.env.NODE_ENV === 'development') ? 'http://127.0.0.1:8000/api' : `${window.location.protocol}//api.demetra.fish/api`;
         if (token) {
-            axios.post('http://localhost:8000/api/auth/logout', {}, {
+            axios.post(`${endPoint}/auth/logout`, {}, {
                 headers: { 'Authorization': `Bearer ${token}` }
             })
                 .then(response => {

@@ -12,8 +12,9 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/profile';
 
     const onSubmit = async data => {
+        const endPoint = (process.env.NODE_ENV === 'development') ? 'http://127.0.0.1:8000/api' : `${window.location.protocol}//api.demetra.fish/api`;
         try {
-            const response = await axios.post('http://localhost:8000/api/auth/login', data);
+            const response = await axios.post(`${endPoint}/auth/login`, data);
             localStorage.setItem('accessToken', response.data.accessToken);
             navigate(from); // Перенаправление на исходную страницу после успешного логина
         } catch (error) {
