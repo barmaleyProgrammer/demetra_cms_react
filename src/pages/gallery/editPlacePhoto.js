@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { destroyPlacePhoto, updatePlacePhoto } from "../../api";
+import {destroyPlacePhoto, destroyRoomPhoto, updatePlacePhoto} from "../../api";
 import {useParams} from "react-router-dom";
 
 const EditPlacePhoto = ({ currentPhoto, close }) => {
@@ -38,14 +38,22 @@ const EditPlacePhoto = ({ currentPhoto, close }) => {
         reader.readAsDataURL(file);
     };
 
-    const destroy = () => {
+    const destroy = async () => {
         const payload = {
             gallery_place_id: currentPhoto.gallery_place_id,
             id: currentPhoto.id
         }
-        destroyPlacePhoto(payload).then(() => {
+        const confirmMessage = `Ви впевнені, що хочете видалити фото?`;
+        if (!window.confirm(confirmMessage)) {
+            return;
+        }
+        try {
+            await destroyPlacePhoto(payload);
+        } catch (error) {
+            console.error('Місце для знищення помилок', error);
+        } finally {
             close();
-        });
+        }
     };
 
     return (

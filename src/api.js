@@ -4,6 +4,7 @@ const connect = axios.create({
     // baseURL: `${window.location.protocol}//${window.location.host}/api`,
     // baseURL: `${window.location.protocol}//127.0.0.1:8000/api`,
     baseURL: (process.env.NODE_ENV === 'development') ? 'http://127.0.0.1:8000/api' : `${window.location.protocol}//api.demetra.fish/api`,
+    // baseURL: (process.env.NODE_ENV === 'development') ? `${window.location.protocol}//api.demetra.fish/api` : 'http://127.0.0.1:8000/api',
     withCredentials: false,
     responseType: 'json',
     maxRedirects: 0,

@@ -13,6 +13,7 @@ const Login = () => {
 
     const onSubmit = async data => {
         const endPoint = (process.env.NODE_ENV === 'development') ? 'http://127.0.0.1:8000/api' : `${window.location.protocol}//api.demetra.fish/api`;
+        // const endPoint = (process.env.NODE_ENV === 'development') ? `${window.location.protocol}//api.demetra.fish/api` : 'http://127.0.0.1:8000/api';
         try {
             const response = await axios.post(`${endPoint}/auth/login`, data);
             localStorage.setItem('accessToken', response.data.accessToken);

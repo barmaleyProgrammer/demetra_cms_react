@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import Grid from "../../components/grid";
 import logo from "../../img/logo.png"
-import { newsList, setActiveNews, newoneDelete } from "../../api";
+import {newsList, setActiveNews, newoneDelete, destroyRoomPhoto} from "../../api";
 
 
 const News = () => {
@@ -100,11 +100,18 @@ const News = () => {
         newsList().then((result) => setNews_cms(result));
     }, []);
 
-    const destroy = (id) => {
-        console.log(id)
-        newoneDelete(id).then(() => {
-            newsList().then((result) => setNews_cms(result));
-        });
+    const destroy = async (id) => {
+        const confirmMessage = `Ви впевнені, що хочете видалити новину?`;
+        if (!window.confirm(confirmMessage)) {
+            return;
+        }
+        try {
+            await newoneDelete(id).then(() => {
+                newsList().then((result) => setNews_cms(result));
+            });
+        } catch (error) {
+            console.error('Місце для знищення помилок', error);
+        }
     };
 
 

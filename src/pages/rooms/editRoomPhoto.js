@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { destroyRoomPhoto, updateRoomPhoto } from "../../api";
+import {destroyRoom, destroyRoomPhoto, updateRoomPhoto} from "../../api";
 
 const EditRoomPhoto = ({ currentPhoto, close }) => {
     const [form, setForm] = useState(
@@ -30,14 +30,22 @@ const EditRoomPhoto = ({ currentPhoto, close }) => {
         reader.readAsDataURL(file);
     };
 
-    const destroy = () => {
+    const destroy = async () => {
         const payload = {
             room_id: currentPhoto.room_id,
             id: currentPhoto.id
         }
-        destroyRoomPhoto(payload).then(() => {
+        const confirmMessage = `Ви впевнені, що хочете видалити фото?`;
+        if (!window.confirm(confirmMessage)) {
+            return;
+        }
+        try {
+            await destroyRoomPhoto(payload);
+        } catch (error) {
+            console.error('Місце для знищення помилок', error);
+        } finally {
             close();
-        });
+        }
     };
 
     return (

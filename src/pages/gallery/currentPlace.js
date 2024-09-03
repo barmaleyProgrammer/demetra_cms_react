@@ -61,7 +61,6 @@ const CurrentPlace = () => {
                 openModal && (
                     <Modal close={() => setOpenModal(false)}>
                         <AddPlacePhoto id={id} close={() => {
-                            window.location.reload();
                             setOpenModal(false);
                         }}/>
                     </Modal>

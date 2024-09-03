@@ -16,6 +16,7 @@ function Profile() {
     useEffect(() => {
         const token = localStorage.getItem('accessToken');
         const endPoint = (process.env.NODE_ENV === 'development') ? 'http://127.0.0.1:8000/api' : `${window.location.protocol}//api.demetra.fish/api`;
+        // const endPoint = (process.env.NODE_ENV === 'development') ? `${window.location.protocol}//api.demetra.fish/api` : 'http://127.0.0.1:8000/api';
         if (token) {
             axios.get(`${endPoint}/auth/whoami`, {
                 headers: { 'Authorization': `Bearer ${token}` }

@@ -45,8 +45,8 @@ const Layout = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/about" className="flex p-2 hover:bg-gray-200">
-                            <span className="ml-3 whitespace-nowrap">Про нас</span>
+                            <NavLink to="/main_service" className="flex p-2 hover:bg-gray-200">
+                            <span className="ml-3 whitespace-nowrap">Послуги</span>
                             </NavLink>
                         </li>
                         <li>
