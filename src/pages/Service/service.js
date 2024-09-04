@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import Grid from "../../components/grid";
-const Service = ({service, destroy}) => {
+import {useContext} from "react";
+import {ServiceContext} from "../../components/serviceContext";
+const Service = ({service}) => {
+    const { services, loading } = useContext(ServiceContext);
 
     const columns = [
         {
@@ -52,7 +55,7 @@ const Service = ({service, destroy}) => {
             <div className="flex justify-between">
                 <h2 className="pt-3 font-medium text-2xl mb-3">Послуги</h2>
             </div>
-            <Grid columns={columns} rows={service} />
+            <Grid columns={columns} rows={services} />
         </div>
     );
 };

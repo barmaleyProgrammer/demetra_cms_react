@@ -1,7 +1,7 @@
 
 import { Routes, Route } from 'react-router-dom';
 
-import Service from "../pages/Service/main_service";
+import Service from "../pages/Service/service";
 import News from "../pages/news/news";
 import Login from "../pages/login";
 import EditNew from "../pages/news/editNew";
@@ -32,7 +32,7 @@ const Main = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/news" element={<PrivateRoute><News /></PrivateRoute>} />
-                <Route path="/main_service/:id?" element={<PrivateRoute><Service /></PrivateRoute>} />
+                <Route path="/service/:id?" element={<PrivateRoute><Service /></PrivateRoute>} />
                 <Route path="/editService/:id?" element={<PrivateRoute><EditService /></PrivateRoute>} />
                 <Route path="/editNew/:id?" element={<PrivateRoute><EditNew /></PrivateRoute>} />
                 <Route path="/createNew" element={<PrivateRoute><CreateNew /></PrivateRoute>} />

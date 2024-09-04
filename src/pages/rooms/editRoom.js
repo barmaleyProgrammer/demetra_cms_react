@@ -60,7 +60,6 @@ const EditRoom = () => {
     };
     const Submit = (event) => {
         event.preventDefault();
-        console.log(form)
         updateRoom(form).then(() => {
             navigate('/main_rooms');
         });

@@ -1,39 +1,28 @@
-import {useEffect, useState} from 'react';
-import { roomList, updateRoom } from "../../api";
+import {useContext, useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import InputField from "../../components/inputField";
 import {Editor} from "@tinymce/tinymce-react";
 import tinymceConfig from "../../tinyMceConfig";
+import {ServiceContext} from "../../components/serviceContext";
+import {serviceEdit} from "../../api";
 
 
 const EditService = () => {
-    const { id } = useParams();
+    const { services, updateService } = useContext(ServiceContext);
     const navigate = useNavigate();
-    const [service, setService] = useState([]);
-    useEffect(() => {
-        const staticService = [
-            {
-                id: 1,
-                name: "У вартість номера входить:",
-                description: "<p>проживання в номері обраної категорії;<br>Спуск-підйом човна;<br>високошвидкісний Wi-Fi Інтернет;</p>",
-            },
-            {
-                id: 2,
-                name: "ДОДАТКОВІ ПОСЛУГИ:",
-                description: "<p>Оренда катера-2500 грн;<br>Послуги єгера-1000 грн;<br>Спуск-підйом-500 грн*<br>Парковка катера-2500 грн/місяць;<br>Мийка катера-250-550 грн;<br>*для проживаючих-безкоштовно(один раз на добу);</p>",
-            },
-        ];
-        const serviceId = staticService.find((item) => item.id == id);
-        setService(serviceId); // Устанавливаем данные в состояние
-        setForm(serviceId); // Устанавливаем данные в состояние
-    }, []);
+    const { id } = useParams();
 
     const [form, setForm] = useState({
         name: '',
         description: ''
     });
 
-
+    useEffect(() => {
+        const serviceItem = services.find(item => item.id === parseInt(id));
+        if (serviceItem) {
+            setForm(serviceItem);
+        }
+    }, [id, services]);
 
     const handleInputChangeName = (event) => {
         const { name, value } = event.target;
@@ -52,16 +41,17 @@ const EditService = () => {
     };
     const Submit = (event) => {
         event.preventDefault();
-        // updateRoom(form).then(() => {
-        //     navigate('/main_service');
-        // });
+        serviceEdit(form).then((updatedService) => {
+            updateService(updatedService); // Обновляем контекст
+            navigate('/service');
+        });
     };
 
     return (
         <div className="px-4 mx-auto py-6">
             <h1 className="font-bold">
                 <span
-                    className="font-normal">Змінити дані послуги:</span> {service.name ? service.name.charAt(0).toUpperCase() + service.name.slice(1) : ''}
+                    className="font-normal">Змінити дані послуги:</span> {form.name ? form.name.charAt(0).toUpperCase() + form.name.slice(1) : ''}
             </h1>
             <form className="mt-8 space-y-6" action="#" autoComplete="off" onSubmit={Submit}>
                     <div className="">

@@ -178,3 +178,11 @@ export const updatePlacePhoto = (payload) => {
 export const destroyPlacePhoto = (payload) => {
     return connect.delete(`/place/${payload.gallery_place_id}/photo/${payload.id}`).then((res) => res.data);
 };
+
+export const serviceList = () => {
+    return connect.get('/service').then((res) => res.data);
+}
+
+export const serviceEdit = (payload) => {
+    return connect.put(`/service/${payload.id}`, payload).then((res) => res.data);
+};

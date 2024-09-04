@@ -2,6 +2,7 @@ import {NavLink, useNavigate} from "react-router-dom";
 import logo from '../img/logo.png'
 import Main from "./main";
 import Footer from "./footer";
+import {ServiceProvider} from "./serviceContext";
 
 const Layout = () => {
     const navigate = useNavigate();
@@ -45,7 +46,7 @@ const Layout = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/main_service" className="flex p-2 hover:bg-gray-200">
+                            <NavLink to="/service" className="flex p-2 hover:bg-gray-200">
                             <span className="ml-3 whitespace-nowrap">Послуги</span>
                             </NavLink>
                         </li>
@@ -68,7 +69,9 @@ const Layout = () => {
                     <Footer />
                 </aside>
                 <div className="col-span-9 px-6">
-                    <Main />
+                    <ServiceProvider>
+                        <Main />
+                    </ServiceProvider>
                 </div>
             </div>
         </div>
