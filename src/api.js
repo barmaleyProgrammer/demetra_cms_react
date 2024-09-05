@@ -100,7 +100,7 @@ export const newsList = () => {
 };
 
 export const newoneCreate = (payload) => {
-    return connect.post('/news/', payload).then((res) => res.data);
+    return connect.post('/news', payload).then((res) => res.data);
 };
 
 export const setActiveNews = ({ id, is_active }) => {
